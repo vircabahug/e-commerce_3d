@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button"
 
 const navigationItems = [
   { name: "Home", href: "/" },
-  { name: "Shop", href: "/products" },
-  { name: "About Us", href: "/about" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "FAQs", href: "/coming-soon" },
-  { name: "Privacy Policy", href: "/coming-soon" },
+  { name: "Shop", href: "tool/products" },
+  { name: "About Us", href: "tool/about" },
+  { name: "Contact Us", href: "tool/contact" },
+  { name: "FAQs", href: "tool/coming-soon" },
+  { name: "Privacy Policy", href: "tool/coming-soon" },
 ]
 
 export default function Footer() {

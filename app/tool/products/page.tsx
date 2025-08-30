@@ -27,6 +27,7 @@ export default function ProductsPage() {
 >
   Our Products
 </motion.h1>
+<div className="text-center pt-5 text-sm">Click to view in 3D</div>
       <div className="flex justify-center">
       <div className="w-full max-w-2xl">
     <Carousel >

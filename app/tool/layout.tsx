@@ -13,9 +13,7 @@ export default function ToolLayout({
       <div className="flex-1 bg-gradient-to-bl from-primary/30 via-background to-secondary/10">
         {children} 
       </div>
-      
         <Footer />
-     
     </div>
   );
 }

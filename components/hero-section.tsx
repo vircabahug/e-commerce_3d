@@ -39,13 +39,13 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/products">
+          <Link href="/tool/products">
           <Button size="lg" className="text-lg px-8 py-6">
             Shop Now!
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           </Link>
-          <Link href="/about">
+          <Link href="/tool/about">
           <Button variant="outline" size="lg" className="text-lg px-8 py-6 bg-transparent">
             Learn More
           </Button>
