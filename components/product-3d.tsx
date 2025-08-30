@@ -1,17 +1,16 @@
 import React, { useEffect, Suspense } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF} from "@react-three/drei";
+import {GLTF} from "three-stdlib";
+import { PerspectiveCamera } from "three";
 
 function ModelWithCamera({ url }: { url: string }) {
-  // useGLTF will throw a promise here until the model is loaded,
-  // which Suspense catches and shows the fallback.
-  const { scene, cameras } = useGLTF(url) as any;
+  const { scene, cameras } = useGLTF(url) as GLTF;
   const { set } = useThree();
 
   useEffect(() => {
-    // This effect now only runs after the useGLTF hook has successfully loaded the model.
     if (cameras && cameras[0]) {
-      set({ camera: cameras[0] });
+      set({ camera: cameras[0] as PerspectiveCamera});
     }
   }, [cameras, set]);
 

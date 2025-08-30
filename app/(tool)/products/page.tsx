@@ -7,8 +7,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import {motion} from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CarouselContent, CarouselPrevious, CarouselNext, CarouselItem  } from "@/components/ui/carousel";
-import { div } from "three/tsl";
 import { products } from "@/public/models/products";
+import Image from "next/image";
 
 // Dynamically import Three.js canvas to avoid SSR issues
 const Product3D = dynamic(() => import("@/components/product-3d"), { ssr: false });
@@ -38,7 +38,7 @@ export default function ProductsPage() {
             onClick={() => setSelected(idx)}
           >
             <Card className="pt-0">
-              <img src={product.image} alt={product.name} className="w-full h-90 object-cover rounded-t" />
+              <Image src={product.image} alt={product.name} width={400} height={400} className="w-full h-90 object-cover rounded-t" />
               <div className="p-4" >
                 <h2 className="text-xl font-semibold">{product.name}</h2>
               </div>
@@ -57,12 +57,11 @@ export default function ProductsPage() {
 </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
         {products.map((product, idx) => (
-          <motion.div>
+          <motion.div key={product.id}>
             <Card
-              key={product.id}
               className="cursor-pointer hover:shadow-lg transition">
               <CardContent onClick={() => setSelected(idx)} className="p-0">
-                <img src={product.image} alt={product.name} className="w-full h-90 object-cover rounded-t" />
+                <Image src={product.image} alt={product.name} width={400} height={400} className="w-full h-90 object-cover rounded-t" />
                 <div className="p-4">
                   <h2 className="text-xl font-semibold">{product.name}</h2>
                   <p className="text-gray-600">{product.description}</p>
