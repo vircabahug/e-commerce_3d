@@ -23,9 +23,10 @@ export default function HeroSection() {
         opacity: Math.max(0, 1 - scrollY / 600),
       }}
     >
-        {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/10" />
-
+      
+    <div 
+    className="absolute inset-0 bg-[url('/resources/background.png')] bg-cover bg-center" 
+  />
       {/* Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 text-balance">

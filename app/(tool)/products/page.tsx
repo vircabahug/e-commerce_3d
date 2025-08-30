@@ -4,53 +4,42 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { Carousel } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+import {motion} from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CarouselContent, CarouselPrevious, CarouselNext, CarouselItem  } from "@/components/ui/carousel";
+import { div } from "three/tsl";
+import { products } from "@/public/models/products";
 
 // Dynamically import Three.js canvas to avoid SSR issues
 const Product3D = dynamic(() => import("@/components/product-3d"), { ssr: false });
 
-const products = [
-  {
-    id: 1,
-    name: "Stylish Jacket",
-    image: "/resources/dog.jpg",
-    description: "A modern, stylish jacket for all seasons.",
-    model: "/models/polo5.glb",
-  },
-  {
-    id: 2,
-    name: "Classic Tee",
-    image: "/resources/kitty.jpg",
-    description: "A timeless classic tee for everyday comfort.",
-  },
-  {
-    id: 3,
-    name: "Trendy Sneakers",
-    image: "/resources/two-dogs.jpg",
-    description: "Step up your style with these trendy sneakers.",
-  },
-];
 
 export default function ProductsPage() {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
-    <div className="container mx-auto py-12">
-      <h1 className="text-3xl font-bold mb-8 text-center">Our Products</h1>
+    <div className="container mx-auto py-20">
+      <motion.h1
+  initial={{ y: -20, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.5 }}
+  className="text-3xl font-bold mb-8 text-center"
+>
+  Our Products
+</motion.h1>
       <div className="flex justify-center">
       <div className="w-full max-w-2xl">
-    <Carousel>
+    <Carousel >
       <CarouselContent>
         {products.map((product, idx) => (
-          <CarouselItem
+            <CarouselItem
             key={product.id}
             className="mx-2 cursor-pointer hover:shadow-lg transition"
             onClick={() => setSelected(idx)}
           >
-            <Card>
-              <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-t" />
-              <div className="p-4">
+            <Card className="pt-0">
+              <img src={product.image} alt={product.name} className="w-full h-90 object-cover rounded-t" />
+              <div className="p-4" >
                 <h2 className="text-xl font-semibold">{product.name}</h2>
               </div>
             </Card>
@@ -62,6 +51,28 @@ export default function ProductsPage() {
     </Carousel>
   </div>
 </div>
+
+<div className="text-left mt-12 mb-6 px-4">
+ All products
+</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4">
+        {products.map((product, idx) => (
+          <motion.div>
+            <Card
+              key={product.id}
+              className="cursor-pointer hover:shadow-lg transition">
+              <CardContent onClick={() => setSelected(idx)} className="p-0">
+                <img src={product.image} alt={product.name} className="w-full h-90 object-cover rounded-t" />
+                <div className="p-4">
+                  <h2 className="text-xl font-semibold">{product.name}</h2>
+                  <p className="text-gray-600">{product.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+      
 
       {/* Popup Modal */}
       {selected !== null && (
